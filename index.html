@@ -3,46 +3,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dr_Brand.store</title>
+  <title>🦷 Dr. Brand 👔</title>
   <style>
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: #f9f9f9;
+      font-family: 'Georgia', serif;
+      margin:0; padding:0;
+      background:#f5f2eb;
+      direction: rtl;
+      color:#222;
     }
+    header {
+      background:#1a1a1a;
+      color:#d4af37;
+      padding:20px;
+      text-align:center;
+      font-size:1.4em;
+      letter-spacing:2px;
+    }
+    nav a {
+      color:#fff;
+      margin:0 12px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:0.3s;
+    }
+    nav a:hover {color:#d4af37;}
     .hero {
-      background: url('banner.jpg') no-repeat center center/cover;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
-      text-align: center;
+      background:url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      height:280px;
+      display:flex; justify-content:center; align-items:center;
+      color:#fff; font-size:2em; text-shadow:3px 3px 8px #000;
+      font-style:italic;
     }
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
+    h2 {text-align:center; margin:20px 0; color:#333;}
+    .products {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      padding:20px;
     }
-    .hero a {
-      padding: 12px 24px;
-      background: #25d366;
-      color: white;
-      border-radius: 8px;
-      font-size: 18px;
-      text-decoration: none;
-      transition: 0.3s;
+    .card {
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:15px;
+      text-align:center;
+      box-shadow:0 2px 6px rgba(0,0,0,0.08);
+      transition:transform 0.3s;
     }
-    .hero a:hover {
-      background: #1ebe5d;
+    .card:hover {transform:scale(1.03);}
+    .card img {width:100%; border-radius:10px;}
+    .btn {
+      display:inline-block;
+      margin-top:12px;
+      padding:8px 20px;
+      background:#1a1a1a;
+      color:#fff;
+      border-radius:6px;
+      text-decoration:none;
+      cursor:pointer;
+      transition:0.3s;
     }
+    .btn:hover {background:#d4af37; color:#000;}
+    .cart {
+      background:#fff;
+      padding:20px;
+      margin:20px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    }
+    footer {
+      background:#111;
+      color:#ccc;
+      padding:25px;
+      text-align:center;
+      font-size:0.9em;
+      margin-top:30px;
+    }
+    footer p {margin:5px 0;}
+    ul {list-style:none; padding:0;}
+    li {margin-bottom:10px;}
   </style>
 </head>
 <body>
+  <header>
+    <h1>🦷 Dr. Brand 👔</h1>
+    <nav>
+      <a href="#">الرئيسية</a>
+      <a href="#products">المنتجات</a>
+      <a href="#cart">عربة التسوق</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </header>
+
   <section class="hero">
-    <h1>Dr_Brand.store</h1>
-    <a href="#products">تسوق الآن</a>
+    <div>الستايل علاج.. و Dr. Brand هو الروشتة ✨</div>
   </section>
+
+  <!-- المنتجات -->
+  <section id="products" class="products">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80" alt="تيشيرت">
+      <h3>تيشيرت رجالي</h3>
+      <p>250 جنيه</p>
+      <button class="btn" onclick="addToCart('تيشيرت رجالي', 250)">أضف للعربة</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1520975922071-a45c2f992b56?auto=format&fit=crop&w=600&q=80" alt="فستان">
+      <h3>فستان</h3>
+      <p>400 جنيه</p>
+      <button class="btn" onclick="addToCart('فستان', 400)">أضف للعربة</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1542062703-8e8b5f3f3b69?auto=format&fit=crop&w=600&q=80" alt="هودي">
+      <h3>هودي</h3>
+      <p>350 جنيه</p>
+      <button class="btn" onclick="addToCart('هودي', 350)">أضف للعربة</button>
+    </div>
+  </section>
+
+  <!-- عربة التسوق -->
+  <section id="cart" class="cart">
+    <h2>🛒 عربة التسوق</h2>
+    <ul id="cart-items"></ul>
+    <p><strong>الإجمالي: </strong><span id="total">0</span> جنيه</p>
+    <button class="btn" onclick="checkout()">إتمام الطلب عبر واتساب</button>
+  </section>
+
+  <footer id="contact">
+    <p>📞 واتساب: 01095896349</p>
+    <p>📷 إنستجرام: @dr_joe504 @brand</p>
+    <p>© 2025 Dr. Brand – جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    let cart = [];
+    function addToCart(product, price) {
+      cart.push({product, price});
+      renderCart();
+    }
+    function renderCart() {
+      let cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        cartItems.innerHTML += `<li>${item.product} - ${item.price} جنيه 
+          <button onclick="removeFromCart(${index})">❌</button></li>`;
+      });
+      document.getElementById('total').innerText = total;
+    }
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+    function checkout() {
+      if(cart.length === 0) {
+        alert("عربتك فاضية!");
+        return;
+      }
+      let message = "مرحبا، أريد طلب المنتجات التالية:\n";
+      let total = 0;
+      cart.forEach(item => {
+        message += `- ${item.product}: ${item.price} جنيه\n`;
+        total += item.price;
+      });
+      message += `الإجمالي: ${total} جنيه`;
+      let phone = "201095896349"; 
+      let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
+  </script>
 </body>
 </html>
