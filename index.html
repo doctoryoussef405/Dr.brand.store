@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>براندك للملابس</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f8f8; direction: rtl;}
+    header {background:#000; color:#fff; padding:15px; text-align:center;}
+    nav a {color:#fff; margin:0 10px; text-decoration:none; font-weight:bold;}
+    .hero {background:url('https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; height:250px; display:flex; justify-content:center; align-items:center; color:white; font-size:1.8em; text-shadow:2px 2px 5px #000;}
+    .products {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; padding:20px;}
+    .card {background:#fff; border-radius:10px; padding:10px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+    .card img {width:100%; border-radius:10px;}
+    .btn {display:inline-block; margin-top:10px; padding:8px 15px; background:#000; color:#fff; border-radius:5px; text-decoration:none; cursor:pointer;}
+    .cart {background:#fff; padding:20px; margin:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+    footer {background:#111; color:#aaa; padding:20px; text-align:center; margin-top:20px;}
+    h2 {text-align:center;}
+    ul {list-style:none; padding:0;}
+    li {margin-bottom:10px;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🔥 براندك للملابس 🔥</h1>
+    <nav>
+      <a href="#">الرئيسية</a>
+      <a href="#products">المنتجات</a>
+      <a href="#cart">عربة التسوق</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>اكتشف أحدث صيحات الموضة معنا</div>
+  </section>
+
+  <!-- المنتجات -->
+  <section id="products" class="products">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80" alt="تيشيرت">
+      <h3>تيشيرت رجالي</h3>
+      <p>250 جنيه</p>
+      <button class="btn" onclick="addToCart('تيشيرت رجالي', 250)">أضف للعربة</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1520975922071-a45c2f992b56?auto=format&fit=crop&w=600&q=80" alt="فستان">
+      <h3>فستان حريمي</h3>
+      <p>400 جنيه</p>
+      <button class="btn" onclick="addToCart('فستان حريمي', 400)">أضف للعربة</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1542062703-8e8b5f3f3b69?auto=format&fit=crop&w=600&q=80" alt="هودي">
+      <h3>هودي</h3>
+      <p>350 جنيه</p>
+      <button class="btn" onclick="addToCart('هودي', 350)">أضف للعربة</button>
+    </div>
+  </section>
+
+  <!-- عربة التسوق -->
+  <section id="cart" class="cart">
+    <h2>🛒 عربة التسوق</h2>
+    <ul id="cart-items"></ul>
+    <p><strong>الإجمالي: </strong><span id="total">0</span> جنيه</p>
+    <button class="btn" onclick="checkout()">إتمام الطلب عبر واتساب</button>
+  </section>
+
+  <footer id="contact">
+    <p>📞 واتساب: 01095896349 | 📷 إنستجرام: @brand</p>
+    <p>© 2025 براندك</p>
+  </footer>
+
+  <script>
+    let cart = [];
+    
+    function addToCart(product, price) {
+      cart.push({product, price});
+      renderCart();
+    }
+
+    function renderCart() {
+      let cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        cartItems.innerHTML += `<li>${item.product} - ${item.price} جنيه 
+          <button onclick="removeFromCart(${index})">❌</button></li>`;
+      });
+      document.getElementById('total').innerText = total;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+
+    function checkout() {
+      if(cart.length === 0) {
+        alert("عربتك فاضية!");
+        return;
+      }
+      let message = "مرحبا، أريد طلب المنتجات التالية:\n";
+      let total = 0;
+      cart.forEach(item => {
+        message += `- ${item.product}: ${item.price} جنيه\n`;
+        total += item.price;
+      });
+      message += `الإجمالي: ${total} جنيه`;
+
+      let phone = "201095896349"; 
+      let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
