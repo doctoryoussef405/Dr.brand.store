@@ -3,203 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🦷 Dr. Brand 👔</title>
+  <title>Dr_Brand.store</title>
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Helvetica, Arial, sans-serif;
-      margin:0; padding:0;
-      background:#fdfdfd;
-      direction: rtl;
-      color:#222;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f9f9f9;
     }
-    header {
-      background:#000;
-      color:#d4af37;
-      padding:25px;
-      text-align:center;
-      font-size:1.6em;
-      font-weight:bold;
-      letter-spacing:1px;
-      box-shadow:0 2px 8px rgba(0,0,0,0.3);
-    }
-    nav {
-      margin-top:10px;
-    }
-    nav a {
-      color:#fff;
-      margin:0 14px;
-      text-decoration:none;
-      font-weight:600;
-      transition:0.3s;
-    }
-    nav a:hover {color:#d4af37;}
     .hero {
-      position:relative;
-      background:url('https://i.ibb.co/N7KH2nD/brand-hero.jpg') center/cover no-repeat;
-      height:420px;
-      display:flex; justify-content:center; align-items:center;
-      color:#fff; 
-      text-align:center;
+      background: url('banner.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+      text-align: center;
     }
-    .hero::after {
-      content:"";
-      position:absolute;
-      top:0; left:0;
-      width:100%; height:100%;
-      background:rgba(0,0,0,0.55);
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
     }
-    .hero div {
-      position:relative;
-      font-size:2.2em;
-      font-weight:bold;
-      z-index:2;
+    .hero a {
+      padding: 12px 24px;
+      background: #25d366;
+      color: white;
+      border-radius: 8px;
+      font-size: 18px;
+      text-decoration: none;
+      transition: 0.3s;
     }
-    h2 {text-align:center; margin:25px 0; color:#333; font-size:1.6em;}
-    .products {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:25px;
-      padding:20px 40px;
+    .hero a:hover {
+      background: #1ebe5d;
     }
-    .card {
-      background:#fff;
-      border:1px solid #eee;
-      border-radius:14px;
-      padding:15px;
-      text-align:center;
-      box-shadow:0 4px 10px rgba(0,0,0,0.08);
-      transition:transform 0.3s, box-shadow 0.3s;
-    }
-    .card:hover {
-      transform:scale(1.04);
-      box-shadow:0 6px 16px rgba(0,0,0,0.12);
-    }
-    .card img {
-      width:100%; 
-      border-radius:12px;
-    }
-    .btn {
-      display:inline-block;
-      margin-top:12px;
-      padding:10px 22px;
-      background:#000;
-      color:#fff;
-      border-radius:8px;
-      text-decoration:none;
-      cursor:pointer;
-      font-weight:600;
-      transition:0.3s;
-    }
-    .btn:hover {background:#d4af37; color:#000;}
-    .cart {
-      background:#fff;
-      padding:25px;
-      margin:30px;
-      border:1px solid #eee;
-      border-radius:14px;
-      box-shadow:0 3px 12px rgba(0,0,0,0.08);
-    }
-    footer {
-      background:#000;
-      color:#ccc;
-      padding:25px;
-      text-align:center;
-      font-size:0.95em;
-      margin-top:40px;
-    }
-    footer p {margin:6px 0;}
-    ul {list-style:none; padding:0;}
-    li {margin-bottom:10px;}
   </style>
 </head>
 <body>
-  <header>
-    <h1>🦷 Dr. Brand 👔</h1>
-    <nav>
-      <a href="#">الرئيسية</a>
-      <a href="#products">المنتجات</a>
-      <a href="#cart">عربة التسوق</a>
-      <a href="#contact">تواصل معنا</a>
-    </nav>
-  </header>
-
   <section class="hero">
-    <div>✨ Dr. Brand – الستايل علاج ✨</div>
+    <h1>Dr_Brand.store</h1>
+    <a href="#products">تسوق الآن</a>
   </section>
-
-  <!-- المنتجات -->
-  <section id="products" class="products">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80" alt="تيشيرت">
-      <h3>تيشيرت رجالي</h3>
-      <p>250 جنيه</p>
-      <button class="btn" onclick="addToCart('تيشيرت رجالي', 250)">أضف للعربة</button>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1520975922071-a45c2f992b56?auto=format&fit=crop&w=600&q=80" alt="فستان">
-      <h3>فستان</h3>
-      <p>400 جنيه</p>
-      <button class="btn" onclick="addToCart('فستان', 400)">أضف للعربة</button>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1542062703-8e8b5f3f3b69?auto=format&fit=crop&w=600&q=80" alt="هودي">
-      <h3>هودي</h3>
-      <p>350 جنيه</p>
-      <button class="btn" onclick="addToCart('هودي', 350)">أضف للعربة</button>
-    </div>
-  </section>
-
-  <!-- عربة التسوق -->
-  <section id="cart" class="cart">
-    <h2>🛒 عربة التسوق</h2>
-    <ul id="cart-items"></ul>
-    <p><strong>الإجمالي: </strong><span id="total">0</span> جنيه</p>
-    <button class="btn" onclick="checkout()">إتمام الطلب عبر واتساب</button>
-  </section>
-
-  <footer id="contact">
-    <p>📞 واتساب: 01095896349</p>
-    <p>📷 إنستجرام: @dr_joe504 @brand</p>
-    <p>© 2025 Dr. Brand – جميع الحقوق محفوظة</p>
-  </footer>
-
-  <script>
-    let cart = [];
-    function addToCart(product, price) {
-      cart.push({product, price});
-      renderCart();
-    }
-    function renderCart() {
-      let cartItems = document.getElementById('cart-items');
-      cartItems.innerHTML = "";
-      let total = 0;
-      cart.forEach((item, index) => {
-        total += item.price;
-        cartItems.innerHTML += `<li>${item.product} - ${item.price} جنيه 
-          <button onclick="removeFromCart(${index})">❌</button></li>`;
-      });
-      document.getElementById('total').innerText = total;
-    }
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      renderCart();
-    }
-    function checkout() {
-      if(cart.length === 0) {
-        alert("عربتك فاضية!");
-        return;
-      }
-      let message = "مرحبا، أريد طلب المنتجات التالية:\n";
-      let total = 0;
-      cart.forEach(item => {
-        message += `- ${item.product}: ${item.price} جنيه\n`;
-        total += item.price;
-      });
-      message += `الإجمالي: ${total} جنيه`;
-      let phone = "201095896349"; 
-      let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-      window.open(url, "_blank");
-    }
-  </script>
 </body>
 </html>
