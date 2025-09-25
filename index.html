@@ -3,26 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>براندك للملابس</title>
+  <title>🦷 Dr. Brand 👔</title>
   <style>
-    body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f8f8f8; direction: rtl;}
-    header {background:#000; color:#fff; padding:15px; text-align:center;}
-    nav a {color:#fff; margin:0 10px; text-decoration:none; font-weight:bold;}
-    .hero {background:url('https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; height:250px; display:flex; justify-content:center; align-items:center; color:white; font-size:1.8em; text-shadow:2px 2px 5px #000;}
-    .products {display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; padding:20px;}
-    .card {background:#fff; border-radius:10px; padding:10px; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+    body {
+      font-family: 'Georgia', serif;
+      margin:0; padding:0;
+      background:#f5f2eb;
+      direction: rtl;
+      color:#222;
+    }
+    header {
+      background:#1a1a1a;
+      color:#d4af37;
+      padding:20px;
+      text-align:center;
+      font-size:1.4em;
+      letter-spacing:2px;
+    }
+    nav a {
+      color:#fff;
+      margin:0 12px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:0.3s;
+    }
+    nav a:hover {color:#d4af37;}
+    .hero {
+      background:url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      height:280px;
+      display:flex; justify-content:center; align-items:center;
+      color:#fff; font-size:2em; text-shadow:3px 3px 8px #000;
+      font-style:italic;
+    }
+    h2 {text-align:center; margin:20px 0; color:#333;}
+    .products {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      padding:20px;
+    }
+    .card {
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:15px;
+      text-align:center;
+      box-shadow:0 2px 6px rgba(0,0,0,0.08);
+      transition:transform 0.3s;
+    }
+    .card:hover {transform:scale(1.03);}
     .card img {width:100%; border-radius:10px;}
-    .btn {display:inline-block; margin-top:10px; padding:8px 15px; background:#000; color:#fff; border-radius:5px; text-decoration:none; cursor:pointer;}
-    .cart {background:#fff; padding:20px; margin:20px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-    footer {background:#111; color:#aaa; padding:20px; text-align:center; margin-top:20px;}
-    h2 {text-align:center;}
+    .btn {
+      display:inline-block;
+      margin-top:12px;
+      padding:8px 20px;
+      background:#1a1a1a;
+      color:#fff;
+      border-radius:6px;
+      text-decoration:none;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .btn:hover {background:#d4af37; color:#000;}
+    .cart {
+      background:#fff;
+      padding:20px;
+      margin:20px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    }
+    footer {
+      background:#111;
+      color:#ccc;
+      padding:25px;
+      text-align:center;
+      font-size:0.9em;
+      margin-top:30px;
+    }
+    footer p {margin:5px 0;}
     ul {list-style:none; padding:0;}
     li {margin-bottom:10px;}
   </style>
 </head>
 <body>
   <header>
-    <h1>🔥 براندك للملابس 🔥</h1>
+    <h1>🦷 Dr. Brand 👔</h1>
     <nav>
       <a href="#">الرئيسية</a>
       <a href="#products">المنتجات</a>
@@ -32,7 +98,7 @@
   </header>
 
   <section class="hero">
-    <div>اكتشف أحدث صيحات الموضة معنا</div>
+    <div>الستايل علاج.. و Dr. Brand هو الروشتة ✨</div>
   </section>
 
   <!-- المنتجات -->
@@ -45,9 +111,9 @@
     </div>
     <div class="card">
       <img src="https://images.unsplash.com/photo-1520975922071-a45c2f992b56?auto=format&fit=crop&w=600&q=80" alt="فستان">
-      <h3>فستان حريمي</h3>
+      <h3>فستان</h3>
       <p>400 جنيه</p>
-      <button class="btn" onclick="addToCart('فستان حريمي', 400)">أضف للعربة</button>
+      <button class="btn" onclick="addToCart('فستان', 400)">أضف للعربة</button>
     </div>
     <div class="card">
       <img src="https://images.unsplash.com/photo-1542062703-8e8b5f3f3b69?auto=format&fit=crop&w=600&q=80" alt="هودي">
@@ -66,18 +132,17 @@
   </section>
 
   <footer id="contact">
-    <p>📞 واتساب: 01095896349 | 📷 إنستجرام: @brand</p>
-    <p>© 2025 براندك</p>
+    <p>📞 واتساب: 01095896349</p>
+    <p>📷 إنستجرام: @dr_joe504 @brand</p>
+    <p>© 2025 Dr. Brand – جميع الحقوق محفوظة</p>
   </footer>
 
   <script>
     let cart = [];
-    
     function addToCart(product, price) {
       cart.push({product, price});
       renderCart();
     }
-
     function renderCart() {
       let cartItems = document.getElementById('cart-items');
       cartItems.innerHTML = "";
@@ -89,12 +154,10 @@
       });
       document.getElementById('total').innerText = total;
     }
-
     function removeFromCart(index) {
       cart.splice(index, 1);
       renderCart();
     }
-
     function checkout() {
       if(cart.length === 0) {
         alert("عربتك فاضية!");
@@ -107,7 +170,6 @@
         total += item.price;
       });
       message += `الإجمالي: ${total} جنيه`;
-
       let phone = "201095896349"; 
       let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
       window.open(url, "_blank");
