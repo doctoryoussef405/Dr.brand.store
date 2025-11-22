@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr/Brand Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }header {
+  background: black;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.25s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 14px;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.btn {
+  width: 100%;
+  background: black;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+}
+
+/* السلة */
+#cartBox {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  width: 260px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+#cartItems div {
+  display: flex;
+  justify-content: space-between;
+  background: #eee;
+  padding: 6px;
+  margin: 4px 0;
+  border-radius: 8px;
+}
+
+.removeBtn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body><header>🔥 Dr/Brand Store 🔥</header><section class="products" id="productList"></section><div id="cartBox">
+  <h3>🛒 السلة</h3>
+  <div id="cartItems"></div>
+  <hr>
+  <p><strong>الإجمالي: </strong><span id="totalPrice">0</span> جنيه</p>
+</div><script>
+  const products = [
+    { id: 1, name: "هودي أوفر سايز", price: 435, img: "https://via.placeholder.com/250" },
+    { id: 2, name: "بنطلون وايد ليج", price: 370, img: "https://via.placeholder.com/250" },
+    { id: 3, name: "طقم أوفر سايز", price: 800, img: "https://via.placeholder.com/250" },
+    { id: 4, name: "T-Shirt Premium", price: 250, img: "https://via.placeholder.com/250" },
+    { id: 5, name: "سويت شيرت شتوي", price: 550, img: "https://via.placeholder.com/250" }
+  ];
+
+  let cart = [];
+
+  function renderProducts() {
+    const list = document.getElementById("productList");
+    list.innerHTML = "";
+    products.forEach(p => {
+      list.innerHTML += `
+        <div class="card">
+          <img src="${p.img}" />
+          <h3>${p.name}</h3>
+          <p>${p.price} جنيه</p>
+          <button class="btn" onclick="addToCart(${p.id})">إضافة للسلة</button>
+        </div>
+      `;
+    });
+  }
+
+  function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    cart.push(product);
+    updateCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  function updateCart() {
+    const cartDiv = document.getElementById("cartItems");
+    const totalDiv = document.getElementById("totalPrice");
+
+    cartDiv.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach((item, i) => {
+      total += item.price;
+      cartDiv.innerHTML += `
+        <div>
+          <span>${item.name}</span>
+          <button class="removeBtn" onclick="removeFromCart(${i})">X</button>
+        </div>`;
+    });
+
+    totalDiv.textContent = total;
+  }
+
+  renderProducts();
+</script></body>
+</html>
