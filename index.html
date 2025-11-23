@@ -1,0 +1,229 @@
+<!doctype html>
+
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dr_brand — Replica</title>
+  <style>
+    /* Simple modern reset */
+    :root{--accent:#ff6b6b;--muted:#6b7280;background:#fff}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+    body{background:linear-gradient(180deg,#fff 0%,#fafafa 100%);color:#111}
+    .container{max-width:1200px;margin:0 auto;padding:20px}/* Header */
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:46px;height:46px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+nav{display:flex;gap:12px;align-items:center}
+nav a{padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--muted)}
+nav a.primary{background:#111;color:#fff}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center;margin:18px 0}
+.hero-card{padding:28px;border-radius:18px;background:linear-gradient(180deg,#fff,#fff);box-shadow:0 6px 24px rgba(2,6,23,0.06)}
+.hero h1{font-size:32px;margin:0 0 8px}
+.hero p{margin:0 0 16px;color:var(--muted)}
+.cta{display:inline-block;padding:12px 18px;border-radius:12px;background:var(--accent);color:#fff;text-decoration:none}
+.hero-image{border-radius:18px;overflow:hidden;height:320px;background:#eee;display:flex;align-items:center;justify-content:center}
+
+/* Products grid */
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin:18px 0}
+.card{background:#fff;border-radius:14px;padding:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04);display:flex;flex-direction:column}
+.card img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+.card .title{font-weight:600;margin:10px 0 6px}
+.card .price{font-weight:700}
+.card .actions{margin-top:auto;display:flex;gap:8px}
+.btn{padding:8px 10px;border-radius:10px;border:0;cursor:pointer}
+.btn.add{background:var(--accent);color:#fff}
+.btn.outline{background:transparent;border:1px solid #e6e6e6}
+
+/* Cart drawer */
+.cart-drawer{position:fixed;top:0;left:0;right:0;bottom:0;display:none}
+.cart-panel{position:fixed;top:0;left:0;right:0;transform:translateY(100%);height:100%;max-width:420px;margin-left:auto;background:#fff;border-top-left-radius:12px;border-top-right-radius:12px;box-shadow:0 -12px 40px rgba(2,6,23,0.12);padding:18px;transition:transform .28s}
+.cart-panel.open{transform:translateY(0)}
+.cart-header{display:flex;align-items:center;justify-content:space-between}
+.cart-list{margin-top:12px;display:flex;flex-direction:column;gap:12px}
+.cart-item{display:flex;gap:12px;align-items:center}
+.cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+.cart-footer{position:absolute;left:0;right:0;bottom:0;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff);}
+
+/* Footer */
+footer{margin:32px 0 80px;color:var(--muted);text-align:center}
+
+/* Responsive */
+@media (max-width:920px){.hero{grid-template-columns:1fr}.hero-image{height:220px}}
+@media (max-width:480px){.container{padding:12px}.logo{width:40px;height:40px}}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" style="background:none;padding:0"><img src="https://i.postimg.cc/521ZXsfj/IMG-20251118-220750-426.jpg" alt="logo" style="width:46px;height:46px;border-radius:10px;object-fit:cover"></div>
+        <div>
+          <div style="font-weight:700">Dr_brand</div>
+          <div style="font-size:12px;color:var(--muted)">توصيل لجميع المحافظات</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#">الرئيسية</a>
+        <a href="#products">منتجات</a>
+        <a href="#" class="primary" id="open-cart">السلة (0)</a>
+      </nav>
+    </header><section class="hero">
+  <div class="hero-card">
+    <h1>أجمل الموديلات بأفضل سعر</h1>
+    <p>موديلات حديثة، خامات ممتازة، وتوصيل سريع لكل المحافظات — اطلب دلوقتي</p>
+    <a class="cta" href="#products">تسوق الآن</a>
+
+    <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+      <div style="padding:10px;border-radius:10px;background:#f8fafc">شحن مجاني فوق 500 جنيه</div>
+      <div style="padding:10px;border-radius:10px;background:#f8fafc">استرجاع خلال 7 ايام</div>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1520975913934-9b27e2c9e9a1?auto=format&fit=crop&w=800&q=60" alt="hero" style="width:100%;height:100%;object-fit:cover">
+  </div>
+</section>
+
+<section id="products">
+  <h2 style="margin:8px 0 12px">منتجات مختارة</h2>
+  <div class="products" id="product-grid">
+    <!-- JS will populate product cards -->
+  </div>
+</section>
+
+<footer>
+  © 2025 Dr_brand — تصميم مشابه للموقع المطلوب
+</footer>
+
+  </div>  <!-- Cart drawer -->  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-panel" id="cart-panel">
+      <div class="cart-header">
+        <h3>السلة</h3>
+        <button id="close-cart" class="btn outline">إغلاق</button>
+      </div>
+      <div class="cart-list" id="cart-list"></div><div class="cart-footer">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div>الإجمالي</div>
+      <div id="cart-total" style="font-weight:800">0 ج.م</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button id="checkout" class="btn add" style="flex:1">اتمام الدفع</button>
+      <button id="clear-cart" class="btn outline">افراغ السلة</button>
+    </div>
+  </div>
+</div>
+
+  </div>  <script>
+    // Sample product data (replace with real data or fetch from API)
+    const products = [
+      {id:1,name:'هودي اوفر سايز - اسود',price:435,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=60'},
+      {id:2,name:'بنطلون وايد ليج - رمادي',price:370,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=60'},
+      {id:3,name:'تيشيرت قطن 100% - ابيض',price:120,img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=60'},
+      {id:4,name:'جاكيت خفيف - كاكي',price:680,img:'https://images.unsplash.com/photo-1520975913934-9b27e2c9e9a1?auto=format&fit=crop&w=900&q=60'},
+      {id:5,name:'تيشيرت ستريت - اسود',price:150,img:'https://images.unsplash.com/photo-1520975913934-9b27e2c9e9a1?auto=format&fit=crop&w=1000&q=60'},
+      {id:6,name:'بنطلون جينز - ازرق',price:299,img:'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=1000&q=60'}
+    ];
+
+    const grid = document.getElementById('product-grid');
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartPanel = document.getElementById('cart-panel');
+    const openCartBtn = document.getElementById('open-cart');
+    const closeCartBtn = document.getElementById('close-cart');
+    const cartList = document.getElementById('cart-list');
+    const cartTotal = document.getElementById('cart-total');
+    const clearCartBtn = document.getElementById('clear-cart');
+    const checkoutBtn = document.getElementById('checkout');
+
+    // Simple cart stored in memory
+    let cart = {};
+
+    function renderProducts(){
+      grid.innerHTML = '';
+      products.forEach(p=>{
+        const card = document.createElement('div'); card.className = 'card';
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <div class="title">${p.name}</div>
+          <div class="price">${p.price} ج.م</div>
+          <div class="actions">
+            <button class="btn add" data-id="${p.id}">اضف للسلة</button>
+            <button class="btn outline" data-id="${p.id}">عرض</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      // attach handlers
+      document.querySelectorAll('.btn.add').forEach(b=>b.addEventListener('click',e=>{
+        const id = e.currentTarget.getAttribute('data-id'); addToCart(parseInt(id));
+      }));
+    }
+
+    function addToCart(id){
+      const p = products.find(x=>x.id===id);
+      if(!p) return;
+      if(cart[id]) cart[id].qty++;
+      else cart[id] = {...p,qty:1};
+      updateCartUI();
+      openCart();
+    }
+
+    function removeFromCart(id){
+      delete cart[id];
+      updateCartUI();
+    }
+
+    function updateCartUI(){
+      cartList.innerHTML = '';
+      let total = 0; let count = 0;
+      Object.values(cart).forEach(item=>{
+        total += item.price * item.qty; count += item.qty;
+        const el = document.createElement('div'); el.className = 'cart-item';
+        el.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <div style="flex:1">
+            <div style="font-weight:700">${item.name}</div>
+            <div style="color:var(--muted);font-size:13px">${item.price} ج.م × ${item.qty}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
+            <button class="btn outline" data-id="${item.id}">حذف</button>
+          </div>
+        `;
+        cartList.appendChild(el);
+      });
+      cartTotal.textContent = total + ' ج.م';
+      openCartBtn.textContent = `السلة (${count})`;
+
+      // attach delete handlers
+      cartList.querySelectorAll('.btn.outline').forEach(b=>b.addEventListener('click',e=>{
+        const id = parseInt(e.currentTarget.getAttribute('data-id'));
+        removeFromCart(id);
+      }));
+    }
+
+    function openCart(){
+      cartDrawer.style.display = 'block';
+      setTimeout(()=>cartPanel.classList.add('open'),10);
+    }
+    function closeCart(){
+      cartPanel.classList.remove('open');
+      setTimeout(()=>{cartDrawer.style.display='none'},280);
+    }
+
+    openCartBtn.addEventListener('click',()=>{
+      openCart();
+    });
+    closeCartBtn.addEventListener('click',closeCart);
+    clearCartBtn.addEventListener('click',()=>{cart={};updateCartUI();});
+    checkoutBtn.addEventListener('click',()=>{alert('تم تحويلك لصفحة الدفع (محاكاة)');});
+
+    // initial render
+    renderProducts();
+    updateCartUI();
+  </script></body>
+</html>
