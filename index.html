@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr_Brand.store</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  background:#fff;
+}
+
+/* HEADER */
+header{
+  width:100%;
+  padding:20px;
+  background:#fff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 2px 14px rgba(0,0,0,0.1);
+  position:sticky;
+  top:0;
+  z-index:99;
+}
+header .logo{
+  height:60px;
+  object-fit:contain;
+}
+header .title{
+  font-size:1.6rem;
+  font-weight:700;
+  color:#0055ff;
+}
+
+/* HERO */
+.hero{
+  width:100%;
+  height:280px;
+  background:#eef3ff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-bottom:3px solid #0055ff;
+}
+.hero h2{
+  color:#0055ff;
+  font-size:2rem;
+  font-weight:700;
+}
+
+/* PRODUCTS */
+.products{
+  padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:20px;
+}
+.product{
+  background:#f5f8ff;
+  padding:12px;
+  border-radius:14px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+.product:hover{
+  transform:translateY(-4px);
+  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+}
+.product img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:12px;
+}
+.product h3{
+  font-size:1.1rem;
+  margin:10px 0 5px;
+}
+.product p{
+  margin-bottom:10px;
+}
+.product button{
+  width:100%;
+  padding:10px;
+  background:#0055ff;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+.product button:hover{
+  background:#0044d4;
+}
+
+/* CHECKOUT BUTTON */
+.checkout-btn{
+  width: 90%;
+  margin:25px auto;
+  display:block;
+  padding: 16px;
+  background: #0055ff;
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.checkout-btn:hover{
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    animation: pulse 0.4s ease-in-out;
+}
+@keyframes pulse{
+  0%{ transform: translateY(-4px) scale(1.00); }
+  50%{ transform: translateY(-4px) scale(1.05); }
+  100%{ transform: translateY(-4px) scale(1.03); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <img src="images/logo.png" class="logo" />
+  <div class="title">Dr_Brand.store</div>
+</header>
+
+<section class="hero">
+  <h2>NEW COLLECTION 2025</h2>
+</section>
+
+<section class="products">
+  <div class="product">
+    <img src="images/product1.jpg" />
+    <h3>Hoodie Oversize</h3>
+    <p>435 EGP</p>
+    <button onclick="addToCart('Hoodie Oversize',435)">أضف للسلة</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product2.jpg" />
+    <h3>Wide Leg Pants</h3>
+    <p>370 EGP</p>
+    <button onclick="addToCart('Wide Leg Pants',370)">أضف للسلة</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product3.jpg" />
+    <h3>Oversize Set</h3>
+    <p>800 EGP</p>
+    <button onclick="addToCart('Oversize Set',800)">أضف للسلة</button>
+  </div>
+</section>
+
+<button class="checkout-btn" onclick="sendOrderToWhatsApp()">إتمام الطلب</button>
+
+<script>
+let cart=[];
+let totalPrice=0;
+
+function addToCart(name,price){
+  cart.push({name,price,quantity:1});
+  totalPrice+=price;
+  alert("✔ تم إضافة المنتج للسلة");
+}
+
+function sendOrderToWhatsApp() {
+  const phone = "201095896349"; // ← ضع رقمك بدون +
+  let message = "🛍️ طلب جديد من Dr_Brand.store%0A%0A";
+
+  if (cart.length === 0) {
+    alert("السلة فاضية!");
+    return;
+  }
+
+  cart.forEach((item, i) => {
+    message += `${i+1}- ${item.name} | السعر: ${item.price} جنيه | الكمية: ${item.quantity}%0A`;
+  });
+
+  message += `%0Aإجمالي السعر: ${totalPrice} جنيه`;
+
+  const url = `https://wa.me/${phone}?text=${message}`;
+  window.open(url, "_blank");
+}
+</script>
+</body>
