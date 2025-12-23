@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Brand Store</title>
+<style>
+/* Reset basic styles */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Arial',sans-serif; }
+body { background:#0a0a0a; color:#f5f5f5; line-height:1.6; scroll-behavior:smooth; }
+
+/* Custom Cursor */
+.cursor { width:20px; height:20px; border:2px solid #00ff7f; border-radius:50%; position:fixed; pointer-events:none; transform:translate(-50%,-50%); transition:transform 0.1s ease-out, background-color 0.2s; z-index:10000; }
+
+/* Header */
+header { display:flex; justify-content:space-between; align-items:center; padding:20px 50px; position:sticky; top:0; background-color:rgba(10,10,10,0.95); z-index:1000; }
+header .logo { font-size:28px; font-weight:bold; letter-spacing:2px; color:#00ff7f; }
+header nav ul { display:flex; list-style:none; gap:25px; }
+header nav ul li a { text-decoration:none; color:#f5f5f5; font-weight:500; transition:color 0.3s; }
+header nav ul li a:hover { color:#00ff7f; }
+.social-icons a img { width:25px; margin-left:15px; transition:transform 0.3s; }
+.social-icons a img:hover { transform:scale(1.2); }
+
+/* Hero Section */
+.hero { height:90vh; display:flex; align-items:center; justify-content:center; text-align:center; background:#111 url('https://via.placeholder.com/1600x900') center/cover no-repeat; position:relative; }
+.hero::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background-color: rgba(0,0,0,0.5); }
+.hero .hero-content { position:relative; z-index:1; }
+.hero h1 { font-size:60px; font-weight:bold; margin-bottom:15px; color:#00ff7f; }
+.hero p { font-size:24px; margin-bottom:20px; }
+.shop-now-btn { display:inline-block; padding:15px 30px; background-color:#00ff7f; color:#0a0a0a; font-weight:bold; text-decoration:none; border-radius:5px; transition:transform 0.3s; }
+.shop-now-btn:hover { transform:scale(1.1); animation:pulse 0.5s; }
+
+/* Products Section */
+.products { padding:80px 50px; text-align:center; }
+.products h2 { font-size:36px; margin-bottom:50px; color:#f5f5f5; }
+.product-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:40px; }
+.product-card { background-color:#111; padding:20px; border-radius:10px; transition:transform 0.4s ease, box-shadow 0.4s ease; }
+.product-card:hover { transform:translateY(-15px) rotate(-1deg) scale(1.05); box-shadow:0 15px 25px rgba(0,255,127,0.5); }
+.product-card img { width:100%; border-radius:10px; margin-bottom:15px; }
+.product-card h3 { margin-bottom:10px; }
+.product-card p { font-size:18px; font-weight:bold; margin-bottom:15px; }
+.add-cart { padding:10px 20px; background-color:#00ff7f; border:none; color:#0a0a0a; font-weight:bold; cursor:pointer; border-radius:5px; transition:transform 0.3s; }
+.add-cart:hover { transform:scale(1.1); animation:pulse 0.5s; }
+
+/* About Section */
+.about { padding:80px 50px; text-align:center; background-color:#111; }
+.about h2 { font-size:36px; margin-bottom:25px; color:#00ff7f; }
+.about p { font-size:20px; margin-bottom:20px; }
+.learn-more-btn { display:inline-block; padding:12px 25px; background-color:#00ff7f; color:#0a0a0a; font-weight:bold; text-decoration:none; border-radius:5px; transition:transform 0.3s; }
+.learn-more-btn:hover { transform:scale(1.1); animation:pulse 0.5s; }
+
+/* Footer */
+footer { background-color:#0a0a0a; padding:30px 50px; text-align:center; }
+footer .social-footer a img { width:25px; margin:0 10px; transition:transform 0.3s; }
+footer .social-footer a img:hover { transform:scale(1.2); }
+footer p { margin-top:20px; font-size:14px; color:#777; }
+
+/* Pulse Animation */
+@keyframes pulse { 0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);} }
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+
+<header>
+  <div class="logo">DR. BRAND</div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="social-icons">
+    <a href="#"><img src="https://via.placeholder.com/25/00ff7f/000000?text=W" alt="WhatsApp"></a>
+    <a href="#"><img src="https://via.placeholder.com/25/00ff7f/000000?text=T" alt="TikTok"></a>
+    <a href="#"><img src="https://via.placeholder.com/25/00ff7f/000000?text=I" alt="Instagram"></a>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>DR. BRAND</h1>
+    <p>Trendy Streetwear</p>
+    <a href="#products" class="shop-now-btn">SHOP NOW</a>
+  </div>
+</section>
+
+<section id="products" class="products">
+  <h2>Latest Drops</h2>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x400/111111/00ff7f?text=Hoodie" alt="Black Dr. Brand Hoodie">
+      <h3>Black Dr. Brand Hoodie</h3>
+      <p>EGP 450</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x400/111111/00ff7f?text=Tee" alt="White Dr. Brand Tee">
+      <h3>White Dr. Brand Tee</h3>
+      <p>EGP 350</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x400/111111/00ff7f?text=Sweatshirt" alt="Gray Streetwear Sweatshirt">
+      <h3>Gray Streetwear Sweatshirt</h3>
+      <p>EGP 400</p>
+      <button class="add-cart">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <h2>About Dr. Brand</h2>
+  <p>Born for Youth. Built Bold. Elevate your style with the freshest trends for the fearless generation.</p>
+  <a href="#products" class="learn-more-btn">LEARN MORE</a>
+</section>
+
+<footer>
+  <div class="social-footer">
+    <a href="#"><img src="https://via.placeholder.com/25/00ff7f/000000?text=W" alt="WhatsApp"></a>
+    <a href="#"><img src="https://via.placeholder.com/25/00ff7f/000000?text=T" alt="TikTok"></a>
+    <a href="#"><img src="https://via.placeholder.com/25/00ff7f/000000?text=I" alt="Instagram"></a>
+  </div>
+  <p>© 2025 Dr. Brand Store | Privacy Policy | Terms & Conditions</p>
+</footer>
+
+<script>
+// Smooth Scroll
+document.querySelectorAll('header nav ul li a').forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// Custom Cursor
+const cursor=document.querySelector('.cursor');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px';});
+document.querySelectorAll('a,button,.product-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2)'; cursor.style.backgroundColor='#00ff7f';});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)'; cursor.style.backgroundColor='transparent';});
+});
+
+// WhatsApp Order
+document.querySelectorAll('.add-cart').forEach(button=>{
+  button.addEventListener('click',()=>{
+    const card=button.parentElement;
+    const name=card.querySelector('h3').innerText;
+    const price=card.querySelector('p').innerText;
+    const number="201234567890"; // ضع رقمك هنا
+    const msg=`السلام عليكم! انا عايز اطلب: ${name} بسعر ${price}`;
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(msg)}`,'_blank');
+  });
+});
+</script>
+
+</body>
+</html>
