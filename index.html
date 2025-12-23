@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR. BRAND | Trendy Streetwear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0a0a;
+            --card-bg: #111111;
+            --neon-green: #4ade80;
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+        }* { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: var(--dark-bg); color: var(--text-white); font-family: 'Inter', sans-serif; line-height: 1.6; }
+
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; position: sticky; top: 0; background: rgba(10, 10, 10, 0.95); z-index: 1000; border-bottom: 1px solid #222; }
+    .logo { font-size: 24px; font-weight: 900; letter-spacing: 2px; }
+    nav a { color: var(--text-white); text-decoration: none; margin: 0 15px; font-size: 14px; font-weight: 500; transition: 0.3s; }
+    nav a:hover { color: var(--neon-green); }
+    .social-icons { display: flex; gap: 15px; font-size: 18px; }
+
+    .hero { height: 90vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .hero h1 { font-size: clamp(3rem, 10vw, 6rem); font-weight: 900; margin-bottom: 10px; }
+    .tagline { color: var(--neon-green); font-size: 1.2rem; font-weight: bold; letter-spacing: 5px; margin-bottom: 30px; text-transform: uppercase; }
+    .btn-neon { background: transparent; color: white; border: 2px solid var(--neon-green); padding: 15px 45px; font-weight: bold; cursor: pointer; text-transform: uppercase; box-shadow: 0 0 15px rgba(74, 222, 128, 0.3); transition: 0.4s; }
+    .btn-neon:hover { background: var(--neon-green); color: black; box-shadow: 0 0 30px var(--neon-green); }
+
+    .section-title { text-align: center; margin: 60px 0 40px; font-size: 1.5rem; letter-spacing: 3px; position: relative; }
+    .section-title::before, .section-title::after { content: ""; display: inline-block; width: 50px; height: 1px; background: var(--text-gray); vertical-align: middle; margin: 0 15px; }
+
+    .container { width: 85%; margin: 0 auto; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 80px; }
+    .product-card { background: var(--card-bg); border-radius: 4px; padding: 15px; text-align: center; border: 1px solid #1a1a1a; transition: 0.3s; }
+    .product-card:hover { border-color: var(--neon-green); transform: translateY(-5px); }
+    .product-card img { width: 100%; height: 350px; object-fit: cover; background: #1a1a1a; margin-bottom: 15px; }
+    .product-card h3 { font-size: 1rem; margin-bottom: 8px; color: var(--text-white); }
+    .price { color: var(--text-gray); font-weight: bold; margin-bottom: 15px; }
+    .btn-add { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--neon-green); color: white; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .btn-add:hover { background: rgba(74, 222, 128, 0.1); }
+
+    .about-section { background: linear-gradient(to top, #000, #0a0a0a); padding: 100px 0; text-align: center; }
+    .about-content h2 { font-size: 2.5rem; margin-bottom: 20px; }
+    .about-content p { color: var(--text-gray); max-width: 600px; margin: 0 auto 30px; }
+
+    footer { padding: 40px 8%; border-top: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-gray); }
+    footer a { color: var(--text-gray); text-decoration: none; margin: 0 10px; }
+
+    /* Cart Styles */
+    .cart { position: fixed; bottom: 20px; right: 20px; background: var(--card-bg); border: 1px solid #222; padding: 15px; border-radius: 6px; width: 280px; max-height: 400px; overflow-y: auto; display: none; flex-direction: column; z-index: 9999; }
+    .cart h3 { margin-bottom: 10px; }
+    .cart-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
+    .cart-total { font-weight: bold; margin-top: 10px; }
+    .btn-cart-toggle { position: fixed; bottom: 20px; right: 320px; background: var(--neon-green); color: black; border: none; padding: 12px 18px; font-weight: bold; border-radius: 6px; cursor: pointer; box-shadow: 0 0 15px var(--neon-green); z-index: 10000; }
+    .btn-whatsapp { margin-top: 10px; background: #25D366; border: none; color: white; padding: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+    @media (max-width: 768px) { header nav { display: none; } .hero h1 { font-size: 3.5rem; } footer { flex-direction: column; gap: 20px; text-align: center; } }
+</style>
+
+</head>
+<body><header>
+    <div class="logo">DR. BRAND</div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+    <div class="social-icons">
+        <span>WP</span> <span>TK</span> <span>IG</span>
+    </div>
+</header><section class="hero">
+    <p class="tagline">Trendy Streetwear</p>
+    <h1>DR. BRAND</h1>
+    <button class="btn-neon">SHOP NOW</button>
+</section><div class="container">
+    <h2 class="section-title">LATEST DROPS</h2>
+    <div class="product-grid">
+        <div class="product-card" data-name="Black Dr. Brand Hoodie" data-price="450">
+            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1974" alt="Hoodie">
+            <h3>Black Dr. Brand Hoodie</h3>
+            <p class="price">EGP 450</p>
+            <button class="btn-add">ADD TO CART</button>
+        </div>
+        <div class="product-card" data-name="White Dr. Brand Tee" data-price="350">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1974" alt="T-shirt">
+            <h3>White Dr. Brand Tee</h3>
+            <p class="price">EGP 350</p>
+            <button class="btn-add">ADD TO CART</button>
+        </div>
+        <div class="product-card" data-name="Gray Streetwear Sweatshirt" data-price="400">
+            <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?q=80&w=1974" alt="Sweatshirt">
+            <h3>Gray Streetwear Sweatshirt</h3>
+            <p class="price">EGP 400</p>
+            <button class="btn-add">ADD TO CART</button>
+        </div>
+    </div>
+</div><section class="about-section">
+    <div class="about-content">
+        <h2 class="section-title">ABOUT DR. BRAND</h2>
+        <h3>BORN FOR YOUTH. BUILT BOLD.</h3>
+        <p>Elevate your style with the freshest trends for the fearless generation.</p>
+        <button class="btn-neon" style="padding: 10px 30px; font-size: 0.8rem;">LEARN MORE</button>
+    </div>
+</section><button class="btn-cart-toggle">Cart (0)</button>
+
+<div class="cart">
+    <h3>Your Cart</h3>
+    <div class="cart-items"></div>
+    <div class="cart-total">Total: EGP 0</div>
+    <button class="btn-whatsapp">Confirm via WhatsApp</button>
+</div><footer>
+    <div class="f-left">© 2025 DR. BRAND STORE</div>
+    <div class="f-right">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+    </div>
+</footer><script>
+// Cart functionality
+const cartToggle = document.querySelector('.btn-cart-toggle');
+const cart = document.querySelector('.cart');
+const addButtons = document.querySelectorAll('.btn-add');
+const cartItemsContainer = document.querySelector('.cart-items');
+const cartTotal = document.querySelector('.cart-total');
+const whatsappBtn = document.querySelector('.btn-whatsapp');
+
+let cartItems = [];
+
+cartToggle.addEventListener('click', () => { cart.style.display = cart.style.display === 'flex' ? 'none' : 'flex'; });
+
+addButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const productCard = e.target.closest('.product-card');
+        const name = productCard.dataset.name;
+        const price = parseInt(productCard.dataset.price);
+
+        const existingItem = cartItems.find(item => item.name === name);
+        if(existingItem){ existingItem.qty += 1; }
+        else { cartItems.push({name, price, qty: 1}); }
+
+        updateCart();
+    });
+});
+
+function updateCart(){
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+    cartItems.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add('cart-item');
+        div.textContent = `${item.name} x${item.qty} - EGP ${item.price*item.qty}`;
+        cartItemsContainer.appendChild(div);
+        total += item.price * item.qty;
+    });
+    cartTotal.textContent = `Total: EGP ${total}`;
+    cartToggle.textContent = `Cart (${cartItems.reduce((sum,i)=>sum+i.qty,0)})`;
+}
+
+whatsappBtn.addEventListener('click', () => {
+    if(cartItems.length === 0){ alert('Cart is empty!'); return; }
+    let message = 'Hello! I would like to order:\n';
+    cartItems.forEach(item => { message += `${item.name} x${item.qty} - EGP ${item.price*item.qty}\n`; });
+    message += `Total: EGP ${cartItems.reduce((sum,i)=>sum+i.price*i.qty,0)}`;
+    const url = `https://wa.me/201234567890?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+});
+</script></body>
+</html>
