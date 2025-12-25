@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DR. BRAND | Trendy Streetwear</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#0e0e0e;color:#fff; padding-top:120px;}
+header{position:fixed; top:0; width:100%; z-index:1000; background:rgba(0,0,0,.75); padding:15px; text-align:center; backdrop-filter:blur(10px);}
+header img{height:70px; width:auto;}
+section{padding:20px; max-width:1200px; margin:auto; text-align:center}
+.products{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; margin-top:40px;}
+.card{background:#161616;border-radius:12px;overflow:hidden;text-align:center;padding-bottom:20px}
+.card img{width:100%;height:300px;object-fit:cover}
+.card h3{margin:15px 0 5px}
+.card .price{color:#2cff00;font-weight:700;margin-bottom:10px}
+.btn{padding:12px 25px;border:2px solid #2cff00;color:#2cff00;background:none;cursor:pointer;border-radius:6px;font-weight:700;margin-top:5px;display:inline-block}
+.btn:hover{background:#2cff00;color:#000}
+</style>
+</head>
+<body>
+
+<header>
+  <img src="assets/logo.png" alt="DR. BRAND Logo">
+</header>
+
+<section>
+<h2>أحدث المنتجات</h2>
+<div class="products">
+
+<!-- مثال منتجات -->
+<div class="card">
+<img src="assets/myproduct1.jpg" loading="lazy">
+<h3>هودي أحمر</h3>
+<div class="price">500 EGP</div>
+<button class="btn" onclick="openProduct('هودي أحمر','500 EGP','assets/myproduct1.jpg')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<img src="assets/myproduct2.jpg" loading="lazy">
+<h3>تيشيرت أبيض</h3>
+<div class="price">350 EGP</div>
+<button class="btn" onclick="openProduct('تيشيرت أبيض','350 EGP','assets/myproduct2.jpg')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<img src="assets/myproduct3.jpg" loading="lazy">
+<h3>سويت شيرت رمادي</h3>
+<div class="price">400 EGP</div>
+<button class="btn" onclick="openProduct('سويت شيرت رمادي','400 EGP','assets/myproduct3.jpg')">اطلب الآن</button>
+</div>
+
+</div>
+</section>
+
+<script>
+function openProduct(name, price, img){
+  localStorage.setItem("currentProduct", JSON.stringify({name, price, img}));
+  window.location.href = "product.html";
+}
+</script>
+
+</body>
+</html>
