@@ -1,75 +1,321 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Order</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-body{background:#0e0e0e;color:#fff;font-family:'Inter',sans-serif;margin:0;padding-top:120px;}
-header{position:fixed; top:0; width:100%; z-index:1000; background:rgba(0,0,0,.75); padding:15px; text-align:center; backdrop-filter:blur(10px);}
-header img{height:70px; width:auto;}
-.container{max-width:1000px;margin:20px auto;padding:20px;text-align:center}
-img#productImg{width:100%;max-width:400px;border-radius:15px}
-h1{margin:20px 0;font-size:32px}
-.price{font-weight:700;margin-bottom:20px;color:#2cff00}
-.sizes{margin:20px 0}
-.sizes button{margin:5px;padding:12px 25px;border:2px solid #2cff00;background:none;color:#2cff00;cursor:pointer;border-radius:6px;font-weight:700;font-size:16px}
-.sizes button.active{background:#2cff00;color:#000}
-#quantity{padding:10px 15px;border-radius:6px;border:2px solid #2cff00;color:#fff;background:#161616;width:80px;text-align:center;margin-bottom:20px;}
-.btn{padding:15px 35px;border:2px solid #2cff00;color:#2cff00;background:none;cursor:pointer;border-radius:8px;font-weight:700;font-size:18px;box-shadow:0 0 20px rgba(44,255,0,.4)}
-.btn:hover{background:#2cff00;color:#000}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DR Brand | المتجر</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: #fff;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo { font-size: 24px; font-weight: 800; }
+
+    main {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .product, .cart {
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      background: #eee;
+      border-radius: 8px;
+    }
+
+    h1 { font-size: 23px; }
+    .description { color: #666; line-height: 1.7; }
+    .price { font-size: 21px; font-weight: bold; }
+
+    .label { margin: 18px 0 9px; font-weight: bold; }
+
+    .colors, .sizes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .color {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #aaa;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .color.active { outline: 2px solid #111; outline-offset: 2px; }
+
+    .size {
+      min-width: 45px;
+      padding: 9px;
+      background: #fff;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .size.active {
+      color: #fff;
+      background: #111;
+      border-color: #111;
+    }
+
+    input[type="number"] {
+      width: 75px;
+      padding: 9px;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+    }
+
+    button { font: inherit; }
+
+    .add-button, .checkout-button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 16px;
+      color: #fff;
+      background: #111;
+      border: 0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .cart {
+      max-width: 1060px;
+      margin: 0 auto 35px;
+    }
+
+    .cart-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #ddd;
+      line-height: 1.8;
+    }
+
+    .remove-button {
+      margin-right: 8px;
+      padding: 5px 9px;
+      color: #fff;
+      background: #a22;
+      border: 0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .total { font-size: 20px; font-weight: bold; }
+    footer { padding: 20px; text-align: center; color: #777; }
+
+    @media (max-width: 700px) {
+      .cart { margin-right: 20px; margin-left: 20px; }
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="logo">DR BRAND</div>
+    <div>🛒 السلة: <span id="cartCount">0</span></div>
+  </header>
 
-<header>
-  <img src="assets/logo.png" alt="DR. BRAND Logo">
-</header>
+  <main id="products"></main>
 
-<div class="container">
-<img id="productImg">
-<h1 id="productName"></h1>
-<div class="price" id="productPrice"></div>
+  <section class="cart">
+    <h2>سلة التسوق</h2>
+    <div id="cartItems">السلة فارغة.</div>
+    <p class="total">الإجمالي: <span id="cartTotal">0</span> جنيه</p>
+    <button class="checkout-button" id="checkout">إتمام الطلب عبر واتساب</button>
+  </section>
 
-<h3>اختر المقاس</h3>
-<div class="sizes">
-<button onclick="selectSize(this)">S</button>
-<button onclick="selectSize(this)">M</button>
-<button onclick="selectSize(this)">L</button>
-<button onclick="selectSize(this)">XL</button>
-</div>
+  <footer>© 2026 DR Brand</footer>
 
-<h3>اختر عدد القطع</h3>
-<input type="number" id="quantity" value="1" min="1">
+  <script>
+    const products = [
+      {
+        id: "hoodie",
+        name: "هودي",
+        price: 550,
+        image: "hoodie.jpg",
+        description: "هودي مريح بتصميم يومي وخامة ناعمة."
+      },
+      {
+        id: "pants",
+        name: "بنطلون",
+        price: 650,
+        image: "pants.jpg",
+        description: "بنطلون مريح مناسب للاستخدام اليومي."
+      }
+    ];
 
-<button class="btn" onclick="orderWhatsApp()">اطلب الآن على WhatsApp</button>
-</div>
+    const cart = [];
 
-<script>
-let selectedSize = null;
-const product = JSON.parse(localStorage.getItem("currentProduct"));
-document.getElementById("productName").innerText = product.name;
-document.getElementById("productPrice").innerText = product.price;
-document.getElementById("productImg").src = product.img;
+    const colorOptions = [
+      { name: "الرمادي الفحمي", value: "#34343a" },
+      { name: "الأسود", value: "#111111" },
+      { name: "البيج", value: "#e8e2d8" },
+      { name: "الرمادي", value: "#777777" },
+      { name: "الأخضر", value: "#263b2d" },
+      { name: "الكحلي", value: "#273650" },
+      { name: "النبيتي", value: "#713c3a" },
+      { name: "الجملي", value: "#c8b28e" },
+      { name: "الأوف وايت", value: "#f4f1e9" }
+    ];
 
-function selectSize(btn){
-  document.querySelectorAll(".sizes button").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-  selectedSize = btn.innerText;
-}
+    const sizes = ["S", "M", "L", "XL", "XXL"];
+    const selections = {};
 
-function orderWhatsApp(){
-  if(!selectedSize){alert("اختر المقاس أولاً"); return;}
-  const quantity = document.getElementById("quantity").value;
-  if(quantity < 1){alert("اختر عدد صحيح أكبر من صفر"); return;}
-  
-  const number = "201100186143"; // ضع رقمك هنا
-  const msg = `مرحباً، أريد طلب المنتج:\n- المنتج: ${product.name}\n- المقاس: ${selectedSize}\n- الكمية: ${quantity}\n- السعر: ${product.price}`;
-  const url = `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;
-  window.open(url, "_blank");
-}
-</script>
+    function renderProducts() {
+      const container = document.getElementById("products");
 
+      container.innerHTML = products.map((product) => `
+        <article class="product" data-product="${product.id}">
+          <img class="product-image" src="${product.image}" alt="${product.name}"
+               onerror="this.style.display='none'">
+          <h1>${product.name}</h1>
+          <p class="description">${product.description}</p>
+          <p class="price">${product.price} جنيه</p>
+
+          <div class="label">اللون: <span class="selected-color">الرمادي الفحمي</span></div>
+          <div class="colors">
+            ${colorOptions.map((color, index) => `
+              <button class="color ${index === 0 ? "active" : ""}"
+                style="background:${color.value}"
+                data-color="${color.name}"
+                aria-label="${color.name}"></button>
+            `).join("")}
+          </div>
+
+          <div class="label">المقاس</div>
+          <div class="sizes">
+            ${sizes.map((size) => `
+              <button class="size" data-size="${size}">${size}</button>
+            `).join("")}
+          </div>
+
+          <div class="label">الكمية</div>
+          <input class="quantity" type="number" min="1" value="1">
+
+          <button class="add-button">أضف إلى السلة</button>
+        </article>
+      `).join("");
+
+      container.querySelectorAll(".product").forEach((card) => {
+        const product = products.find((item) => item.id === card.dataset.product);
+        selections[product.id] = { color: colorOptions[0].name, size: "" };
+
+        card.querySelectorAll(".color").forEach((button) => {
+          button.addEventListener("click", () => {
+            card.querySelector(".color.active")?.classList.remove("active");
+            button.classList.add("active");
+            selections[product.id].color = button.dataset.color;
+            card.querySelector(".selected-color").textContent = button.dataset.color;
+          });
+        });
+
+        card.querySelectorAll(".size").forEach((button) => {
+          button.addEventListener("click", () => {
+            card.querySelector(".size.active")?.classList.remove("active");
+            button.classList.add("active");
+            selections[product.id].size = button.dataset.size;
+          });
+        });
+
+        card.querySelector(".add-button").addEventListener("click", () => {
+          const selection = selections[product.id];
+
+          if (!selection.size) {
+            alert("اختار المقاس الأول.");
+            return;
+          }
+
+          const quantity = Math.max(
+            1,
+            Number(card.querySelector(".quantity").value) || 1
+          );
+
+          cart.push({
+            name: product.name,
+            price: product.price,
+            color: selection.color,
+            size: selection.size,
+            quantity
+          });
+
+          renderCart();
+        });
+      });
+    }
+
+    function renderCart() {
+      const itemsContainer = document.getElementById("cartItems");
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      document.getElementById("cartCount").textContent =
+        cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById("cartTotal").textContent = total;
+
+      if (cart.length === 0) {
+        itemsContainer.textContent = "السلة فارغة.";
+        return;
+      }
+
+      itemsContainer.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          ${item.name} — اللون: ${item.color} — المقاس: ${item.size}
+          — الكمية: ${item.quantity} — ${item.price * item.quantity} جنيه
+          <button class="remove-button" data-index="${index}">حذف</button>
+        </div>
+      `).join("");
+
+      itemsContainer.querySelectorAll(".remove-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          cart.splice(Number(button.dataset.index), 1);
+          renderCart();
+        });
+      });
+    }
+
+    document.getElementById("checkout").addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("السلة فارغة.");
+        return;
+      }
+
+      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const order = cart.map((item) =>
+        `- ${item.name}، اللون ${item.color}، المقاس ${item.size}، الكمية ${item.quantity}، السعر ${item.price * item.quantity} جنيه`
+      );
+
+      const message = `مرحبًا، أريد تأكيد هذا الطلب:\n${order.join("\n")}\nالإجمالي: ${total} جنيه`;
+      window.open(
+        `https://wa.me/201100186143?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
+    });
+
+    renderProducts();
+  </script>
 </body>
 </html>
